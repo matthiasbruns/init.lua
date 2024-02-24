@@ -38,4 +38,16 @@ return require('packer').startup(function(use)
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
 	}
- end)
+
+    use('rust-lang/rust.vim')
+
+    use 'simrat39/rust-tools.nvim'
+    -- Debugging
+    use 'mfussenegger/nvim-dap'
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    use 'github/copilot.vim'
+
+end)

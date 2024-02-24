@@ -1,16 +1,16 @@
-local lsp = require('lsp-zero')
-require('lspconfig').lua_ls.setup({})
+local lsp_zero = require('lsp-zero')
+local util = require('lspconfig/util')
 
-lsp.preset('recommended')
-lsp.on_attach(function(client, bufnr)
+lsp_zero.preset('recommended')
+lsp_zero.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
   -- to learn the available actions
-  lsp.default_keymaps({buffer = bufnr})
+  lsp_zero.default_keymaps({buffer = bufnr})
 end)
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {},
-  handlers = {
-    lsp.default_setup,
-  },
+    ensure_installed = {'gopls', 'rust_analyzer'},
+    handlers = {
+        lsp_zero.default_setup,
+    }
 })
