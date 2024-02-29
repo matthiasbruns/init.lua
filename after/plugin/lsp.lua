@@ -2,10 +2,25 @@ local lsp_zero = require('lsp-zero')
 local util = require('lspconfig/util')
 
 lsp_zero.preset('recommended')
+
+local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+local lsp_format_on_save = function(bufnr)
+    vim.api.nvim_clear_autocmds({group = augroup, buffer = bufnr})
+    vim.api.nvim_create_autocmd('BufWritePre', {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+            vim.lsp.buf.format()
+        end,
+    })
+end
+
+
 lsp_zero.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
     lsp_zero.default_keymaps({buffer = bufnr})
+    lsp_format_on_save(bufnr)
     local opts = {buffer = bufnr, remap = false}
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -18,6 +33,14 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+
+    lsp_zero.format_mapping('gq', {
+        format_opts = {
+            async = false,
+            timeout_ms = 10000,
+        },
+    })
+
 
     local cmp = require('cmp')
     local cmp_action = require('lsp-zero').cmp_action()
@@ -39,12 +62,14 @@ lsp_zero.on_attach(function(client, bufnr)
             ['<C-d>'] = cmp.mapping.scroll_docs(4),
         })
     })
+
 end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = {'gopls', 'rust_analyzer'},
+    nsure_installed = {'gopls', 'rust_analyzer','gopls','lua-language-server', 'terraform-ls'},
     handlers = {
         lsp_zero.default_setup,
     }
 })
+
