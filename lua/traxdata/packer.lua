@@ -41,6 +41,7 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },
             { 'rafamadriz/friendly-snippets' },
             { 'hrsh7th/cmp-buffer' },
+
             { 'hrsh7th/cmp-path' },
             { 'hrsh7th/cmp-nvim-lua' },
         }
@@ -54,5 +55,8 @@ return require('packer').startup(function(use)
     }
     use 'github/copilot.vim'
 
-    use 'mg979/vim-visual-multi'
+    use { 'smoka7/multicursors.nvim',
+        requires = { 'smoka7/hydra.nvim' }
+    }
+    use 'tpope/vim-surround'
 end)

@@ -24,6 +24,5 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-vim.keymap.set("n", "<C-N>", "<cmd> bnext <CR>")
-vim.keymap.set("n", "<C-P>", "<cmd> bprev <CR>")
-
+vim.keymap.set("n", "<C-J>", "<cmd> bnext <CR>")
+vim.keymap.set("n", "<C-K>", "<cmd> bprev <CR>")
