@@ -48,6 +48,7 @@ return require('packer').startup(function(use)
     }
 
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+    use { "leoluz/nvim-dap-go", requires = { "mfussenegger/nvim-dap" } }
 
     use {
         'nvim-lualine/lualine.nvim',
