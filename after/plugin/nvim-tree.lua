@@ -18,11 +18,20 @@ require("nvim-tree").setup({
     },
     renderer = {
         group_empty = true,
+        highlight_git = "icon",
+        highlight_diagnostics = "none",
+        highlight_opened_files = "all",
+        highlight_modified = "all",
+        highlight_bookmarks = "all",
+        highlight_clipboard = "name",
     },
     filters = {
         dotfiles = true,
     },
+    update_focused_file = {
+        enable = true,
+    },
 })
 
-vim.keymap.set("n", "n<C-n>", ":NvimTreeToggle<CR>")
-vim.keymap.set("n", "<leader>pv", ":NvimTreeFocus<CR>")
+vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>pv", ":NvimTreeFindFile<CR>")
