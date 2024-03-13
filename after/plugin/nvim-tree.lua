@@ -16,14 +16,12 @@ local function my_on_attach(bufnr)
     api.config.mappings.default_on_attach(bufnr)
 
     -- custom mappings
-    vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
-    vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
     vim.keymap.set("n", "%", function()
         api.fs.create()
-    end)
+    end, { buffer = bufnr })
     vim.keymap.set("n", "d", function()
         api.fs.create()
-    end)
+    end, { buffer = bufnr })
 end
 
 
@@ -53,3 +51,6 @@ require("nvim-tree").setup({
         enable = true,
     },
 })
+
+vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>pv", ":NvimTreeFocus<CR>")
