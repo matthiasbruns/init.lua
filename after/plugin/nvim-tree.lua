@@ -19,9 +19,6 @@ local function my_on_attach(bufnr)
     vim.keymap.set("n", "%", function()
         api.fs.create()
     end, { buffer = bufnr })
-    vim.keymap.set("n", "d", function()
-        api.fs.create()
-    end, { buffer = bufnr })
 end
 
 

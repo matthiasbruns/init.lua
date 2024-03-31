@@ -19,38 +19,6 @@ return require('packer').startup(function(use)
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
 
-    -- LSP and completion with lsp-zero
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        requires = {
-            --- Uncomment the two plugins below if you want to manage the language servers from neovim
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
-            { "mfussenegger/nvim-dap" },
-            { "jay-babu/mason-nvim-dap.nvim" },
-
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' },
-            { 'ray-x/go.nvim' },
-            { 'ray-x/guihua.lua' },
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'L3MON4D3/LuaSnip' },
-            { 'rafamadriz/friendly-snippets' },
-            { 'hrsh7th/cmp-buffer' },
-
-            { 'hrsh7th/cmp-path' },
-            { 'hrsh7th/cmp-nvim-lua' },
-        }
-    }
-
-    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
-    use { "leoluz/nvim-dap-go", requires = { "mfussenegger/nvim-dap" } }
-
-
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
@@ -62,10 +30,17 @@ return require('packer').startup(function(use)
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
-    use 'github/copilot.vim'
+--    use 'github/copilot.vim'
 
     use { 'smoka7/multicursors.nvim',
         requires = { 'smoka7/hydra.nvim' }
     }
     use 'tpope/vim-surround'
+
+
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
+    }
 end)
